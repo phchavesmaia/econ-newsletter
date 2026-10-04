@@ -1,0 +1,23 @@
+jue:
+  - name: Journal of Urban Economics
+    issn: "0094-1190"
+
+rsue:
+  - name: Regional Science and Urban Economics
+    issn: "0166-0462"
+
+restat:
+  - name: Review of Economics and Statistics
+    issn: "0034-6535"
+
+jde:
+  - name: Journal of Development Economics
+    issn: "0304-3878"
+
+aer: 
+  - name: American Economic Review
+    issn: "0002-8282"
+
+qje:
+  - name: Quarterly Journal of Economics
+    issn: "0033-5533"
