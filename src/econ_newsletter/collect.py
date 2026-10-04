@@ -16,17 +16,6 @@ DATABASE_FILE = PROJECT_DIR / "papers.db"
 
 
 ## Collecting and saving records
-
-
-def get_issn(journal: str) -> str:
-    """Read journal's ISSN from the project's journal configuration."""
-    # Load the journal configuration from the YAML file.
-    with JOURNALS_FILE.open(encoding="utf-8") as file:
-        config = yaml.safe_load(file)
-    # Return the ISSN of the specified journal.
-    return config[journal][0]["issn"]
-
-
 def fetch_records(issn: str, records: int = 100) -> list[dict]:
     """Fetch a specified number of most recently published records for the configured ISSN."""
     # Construct the URL for fetching works from the CrossRef API.
@@ -144,13 +133,19 @@ def save_records(records: list[dict]) -> int:
 
 
 def main() -> None:
-    journal = "jde"
-    issn = get_issn(journal)
-    records = fetch_records(issn)
-    saved = save_records(records)
-    print(
-        f"Fetched {len(records)} Crossref records from {journal}; saved {saved} records to {DATABASE_FILE}"
-    )
+    with JOURNALS_FILE.open(encoding="utf-8") as file:
+        config = yaml.safe_load(file)
+
+    for journal_id, journal_entries in config.items():
+        journal = journal_entries[0]
+        issn = journal["issn"]
+
+        records = fetch_records(issn)
+        saved = save_records(records)
+        print(
+            f"Fetched {len(records)} Crossref records from {journal['name']}; "
+            f"saved {saved} records to {DATABASE_FILE}"
+        )
 
 
 if __name__ == "__main__":
