@@ -21,7 +21,7 @@ def load_papers() -> list[dict]:
     if not DATABASE_FILE.exists():
         print(f"Database not found at {DATABASE_FILE}. Collecting papers...")
         subprocess.run(
-            [sys.executable, PROJECT_DIR / "src" / "econ_newsletter" / "collect.py"],
+            [sys.executable, PROJECT_DIR / "src" / "econ_newsletter" / "collector.py"],
             check=True,
         )
     # Connect to the database in read-only mode.
@@ -87,7 +87,7 @@ class NewsletterApp(App[None]):
         # Constructing table columns
         table = self.query_one("#papers", DataTable)
         table.add_column("New", width=4)
-        table.add_column("Date", width=8)
+        table.add_column("Date", width=12)
         table.add_column("Journal", width=33)
         table.add_column("Title", width=60)
 

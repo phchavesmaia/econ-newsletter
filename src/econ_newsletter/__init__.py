@@ -1,3 +1,2 @@
-"""Personal economics newsletter collector."""
+"""Personal economics newsletter collector and terminal interface."""
 
-from .collector import main
