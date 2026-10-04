@@ -35,9 +35,14 @@ Use the arrow keys to browse papers, `o` to open the selected paper's URL in you
 The collector requests 100 recent records per journal as a default configuration, sorted by publication date. Run it whenever you want to refresh the database. It can also be scheduled with cron; for example:
 
 ```cron
-0 7 * * * cd /mnt/storage/Projects/econ-newsletter && uv run python src/econ_newsletter/collector.py >> collector.log 2>&1
+0 7 * * 1 cd path/to/project && uv run econ-newsletter-collector >> collector.log 2>&1
 ```
 
+Then, it would also be helpful to add an alias in your `.bashrc`
+
+```bash
+alias econ-news='uv run --project path/to/project econ-newsletter'
+```
 ## Journals
 
 Edit [`journals.yaml`](journals.yaml) to change the journals. Each entry has a short ID, journal name, and ISSN. The current configuration includes:
