@@ -17,11 +17,11 @@ DATABASE_FILE = PROJECT_DIR / "papers.db"
 
 ## Collecting and saving records
 def fetch_records(issn: str, records: int = 100) -> list[dict]:
-    """Fetch a specified number of most recently published records for the configured ISSN."""
+    """Fetch a specified number of most recently updated records for the configured ISSN."""
     # Construct the URL for fetching works from the CrossRef API.
     url = f"https://api.crossref.org/journals/{issn}/works"
     # Set the query parameters for the API request.
-    params = {"rows": records, "sort": "published", "order": "desc"}
+    params = {"rows": records, "sort": "updated", "order": "desc"}
     # Include the mailto parameter if it is set in the environment.
     mailto = os.getenv("CROSSREF_MAILTO")
     if mailto:

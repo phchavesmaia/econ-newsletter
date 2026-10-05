@@ -32,10 +32,10 @@ Use the arrow keys to browse papers, `o` to open the selected paper's URL in you
 
 ![TUI example](example.svg)
 
-The collector requests 100 recent records per journal as a default configuration, sorted by publication date. Run it whenever you want to refresh the database. It can also be scheduled with cron; for example:
+The collector requests the 100 most recently updated Crossref records per journal by default, which prioritizes newly deposited in-press papers. The TUI still displays papers by publication date. Run the collector whenever you want to refresh the database. It can also be scheduled with cron; for example:
 
 ```cron
-0 7 * * 1 cd path/to/project && uv run econ-newsletter-collector >> collector.log 2>&1
+0 10 * * * cd path/to/project && uv run econ-newsletter-collector >> collector.log 2>&1
 ```
 
 Then, it would also be helpful to add an alias in your `.bashrc`
